@@ -16,7 +16,6 @@ public class PlayerMovement : MonoBehaviour
         rg= GetComponent<Rigidbody>();
         //passage = FindObjectOfType<Passage>();
         
-
     }
     void Start()
     {
@@ -101,7 +100,6 @@ public class PlayerMovement : MonoBehaviour
         if(coll.gameObject.CompareTag("powerUp")){
 
             Debug.Log("Power Up taken");
-
 
             for (int i = 0; i <= PowerUps_.Length - 1; i++)
             {

@@ -18,6 +18,7 @@ public class GameController : MonoBehaviour
     int activeScene;
     public bool isGameStarted=false;
     public bool isLevelCompleted=false;
+    public bool isGameFinished=false;
 
     void Awake() {
 
@@ -51,13 +52,9 @@ public class GameController : MonoBehaviour
         if(isLevelCompleted==true){
             StartCoroutine(nameof(LevelCompleted));
         }
+
         
-    }
-
-    public void StartTheGame(){
-
-        SceneManager.LoadScene(1);
-
+        
     }
 
     public void ResumeGame(){
@@ -103,12 +100,6 @@ public class GameController : MonoBehaviour
         
     }
 
-    public void QuiteGame(){
-
-        Application.Quit();
-
-    }
-
     IEnumerator GameOver(){
 
         yield return new WaitUntil(passage.isCounting);
@@ -131,6 +122,9 @@ public class GameController : MonoBehaviour
 
     public void GameFinished(){
 
+        isGameFinished=true;
+        Debug.Log("The game finished has been triggered " + isGameFinished);
+        //DontDestroytheObject();
         SceneManager.LoadScene(0);
         Destroy(this.gameObject);
 
@@ -144,6 +138,7 @@ public class GameController : MonoBehaviour
 
             Destroy(this.gameObject);
             GameControllerCreated = false;
+
         }
     }
 
