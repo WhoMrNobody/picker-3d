@@ -89,7 +89,7 @@ public class GameController : MonoBehaviour
     IEnumerator LevelCompleted(){
 
         yield return new WaitForSeconds(2f);
-        player.transform.position= new Vector3(0f, 2f, 0f);
+        player.transform.position= new Vector3(0f, 1f, 0f);
         isLevelCompleted=false;
         isGameStarted=false;
         PlayText_.enabled=true;

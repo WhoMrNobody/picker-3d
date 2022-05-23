@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     //Passage passage;
     Vector3 direction;
     Touch touch;
+    float movementVector;
 
     bool powerTaken=false;
 
@@ -50,13 +51,26 @@ public class PlayerMovement : MonoBehaviour
 
             touch = Input.GetTouch(0);
             Debug.Log("First Touch is received");
+            float touchToLeft = -touch.deltaPosition.x * MoveSpeed_;
+            float touchToRight = touch.deltaPosition.x * MoveSpeed_;
             
 
             if(touch.phase==TouchPhase.Moved){
 
                 GameController.gameControllerInstantiate.isGameStarted=true;
                 GameController.gameControllerInstantiate.PlayText_.enabled=false;
-                PickerMover();
+                //PickerMover();
+
+                rg.isKinematic=false;
+                
+
+                foreach (Touch touch in Input.touches)
+                {
+                    movementVector = touch.deltaPosition.x * MoveSpeed_;
+                }
+
+                rg.AddForce(new Vector3(movementVector,0,0), ForceMode.Impulse);
+                direction.x = MoveSpeed_;
 
             }
 
@@ -120,7 +134,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void PickerMoveForward(){
 
-        rg.velocity= new Vector3(rg.velocity.x, transform.position.y, PickerSpeed_);
+        rg.velocity= new Vector3(rg.velocity.x, rg.velocity.y, PickerSpeed_);
     }
 
     public void PickerMover(){
@@ -133,6 +147,8 @@ public class PlayerMovement : MonoBehaviour
         Vector3 currentPos = transform.position;
         currentPos.x = Mathf.Clamp(transform.position.x, -15.80f, 19.50f);
         transform.position = currentPos;
+
+        
     }
     
 }
