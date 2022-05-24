@@ -4,9 +4,7 @@ public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager instantiate;
     public TMP_Text scoreText_;
-
     public const string HighScoreKey = "HighScore";
-    
     int score=0;
     void Awake(){
 
@@ -15,8 +13,7 @@ public class ScoreManager : MonoBehaviour
     }
     void Start() {
 
-        scoreText_.text = score.ToString();
-        
+        scoreText_.text = score.ToString();  
     }
 
     void Update() {
@@ -32,8 +29,7 @@ public class ScoreManager : MonoBehaviour
             }
 
         }
-
-        
+ 
     }
 
     void OnDestroy() {
@@ -45,7 +41,6 @@ public class ScoreManager : MonoBehaviour
             PlayerPrefs.SetInt(HighScoreKey, Mathf.FloorToInt(score));
         }
 
-        
     }
 
 
@@ -55,8 +50,5 @@ public class ScoreManager : MonoBehaviour
         scoreText_.text = score.ToString();
 
     }
-
-
-    
 
 }

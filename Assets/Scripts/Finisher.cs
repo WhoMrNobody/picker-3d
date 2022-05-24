@@ -3,7 +3,6 @@ using DG.Tweening;
 
 public class Finisher : MonoBehaviour
 {
-
     int pickCount;
 
     void OnTriggerEnter(Collider other) {

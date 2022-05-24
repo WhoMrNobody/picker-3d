@@ -4,23 +4,16 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float PickerSpeed_;
     [SerializeField] float MoveSpeed_;
     [SerializeField] GameObject[] PowerUps_;
+
     Rigidbody rg;
-    //Passage passage;
     Vector3 direction;
     Touch touch;
     float movementVector;
-
     bool powerTaken=false;
 
     void Awake() {
 
-        rg= GetComponent<Rigidbody>();
-        //passage = FindObjectOfType<Passage>();
-        
-    }
-    void Start()
-    {
-       
+        rg=GetComponent<Rigidbody>();
         
     }
 
@@ -46,20 +39,14 @@ public class PlayerMovement : MonoBehaviour
 
         }
 
-        
         if(Input.touchCount>0){
 
             touch = Input.GetTouch(0);
-            Debug.Log("First Touch is received");
-            float touchToLeft = -touch.deltaPosition.x * MoveSpeed_;
-            float touchToRight = touch.deltaPosition.x * MoveSpeed_;
             
-
             if(touch.phase==TouchPhase.Moved){
 
                 GameController.gameControllerInstantiate.isGameStarted=true;
                 GameController.gameControllerInstantiate.PlayText_.enabled=false;
-                //PickerMover();
 
                 rg.isKinematic=false;
                 
@@ -83,7 +70,6 @@ public class PlayerMovement : MonoBehaviour
 
         if(coll.gameObject.CompareTag("passageGate")){
 
-            Debug.Log("Passage is triggered");
             rg.isKinematic=true;
 
             if(powerTaken==true){
@@ -94,11 +80,7 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
             
-        }/*else{
-
-            rg.isKinematic=false;
-
-        }*/
+        }
 
         if(coll.gameObject.CompareTag("Finish")){
             
@@ -113,8 +95,6 @@ public class PlayerMovement : MonoBehaviour
 
         if(coll.gameObject.CompareTag("powerUp")){
 
-            Debug.Log("Power Up taken");
-
             for (int i = 0; i <= PowerUps_.Length - 1; i++)
             {
                 PowerUps_[i].SetActive(true);
@@ -125,7 +105,6 @@ public class PlayerMovement : MonoBehaviour
 
         if(coll.gameObject.CompareTag("TheLastFinish")){
 
-            Debug.Log("Game is finished");
             GameController.gameControllerInstantiate.GameFinished();
 
         }

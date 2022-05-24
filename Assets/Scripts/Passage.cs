@@ -70,7 +70,6 @@ public class Passage : MonoBehaviour
             Invoke(nameof(MoveOn), 2.5f);
         }
 
-        
     }
 
 }

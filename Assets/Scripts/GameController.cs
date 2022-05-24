@@ -42,7 +42,6 @@ public class GameController : MonoBehaviour
 
         if(passage.isCounting()==true){
 
-            Debug.Log("Coroutine has been started");
             StartCoroutine(GameOver());
 
         }else{
@@ -53,8 +52,6 @@ public class GameController : MonoBehaviour
             StartCoroutine(nameof(LevelCompleted));
         }
 
-        
-        
     }
 
     public void ResumeGame(){
@@ -82,7 +79,7 @@ public class GameController : MonoBehaviour
         isGameStarted=false;
         PlayText_.enabled=true;
         passage.isCounting_=false;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(activeScene);
 
     }
 
@@ -103,8 +100,6 @@ public class GameController : MonoBehaviour
     IEnumerator GameOver(){
 
         yield return new WaitUntil(passage.isCounting);
-        Debug.Log("Passage counting is " + passage.isCounting());
-
         Invoke(nameof(GameFailed), 5f);
         
     }
@@ -116,15 +111,12 @@ public class GameController : MonoBehaviour
         CurrentScoreText_.text=ScoreManager.instantiate.scoreText_.text;
         gameOverCanvas.SetActive(true);
         isGameStarted=false;
-        Debug.Log("The Game Over Canvas activated");
 
     }
 
     public void GameFinished(){
 
         isGameFinished=true;
-        Debug.Log("The game finished has been triggered " + isGameFinished);
-        //DontDestroytheObject();
         SceneManager.LoadScene(0);
         Destroy(this.gameObject);
 
@@ -141,6 +133,5 @@ public class GameController : MonoBehaviour
 
         }
     }
-
 
 }

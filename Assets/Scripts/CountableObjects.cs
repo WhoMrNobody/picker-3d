@@ -6,7 +6,6 @@ public class CountableObjects : MonoBehaviour
 {
     public PickableObjects pickableObjects;
     public Mesh mesh;
-    
     public float mass;
 
     bool isCounted;

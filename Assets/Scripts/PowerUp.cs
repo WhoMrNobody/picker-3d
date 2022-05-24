@@ -5,7 +5,6 @@ using DG.Tweening;
 
 public class PowerUp : MonoBehaviour
 {
-
     void Update()
     {
         transform.Rotate(0f, 230f * Time.deltaTime, 0f);
@@ -19,7 +18,5 @@ public class PowerUp : MonoBehaviour
         }
         
     }
-
-
 
 }
